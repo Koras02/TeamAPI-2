@@ -1,5 +1,6 @@
-#include "pch.h"
+#include "stdafx.h"
 #include "ScrewBullet.h"
+
 
 CScrewBullet::CScrewBullet()
 	: m_fCenterAngle(0.f), m_fCenterSpeed(0.f), m_bStart(true)
@@ -7,20 +8,19 @@ CScrewBullet::CScrewBullet()
 	ZeroMemory(&m_tCenterPos, sizeof(m_tCenterPos));
 }
 
+
 CScrewBullet::~CScrewBullet()
 {
 	Release();
 }
 
-void CScrewBullet::Initialize()
+void CScrewBullet::Initalize()
 {
-	m_tInfo.iCX = 10;
-	m_tInfo.iCY = 10;
-	m_tInfo.fX = 50;
-	m_tInfo.fY = 50;
+	m_tInfo.iCX = 30;
+	m_tInfo.iCY = 30;
 
-	m_fSpeed = 5.f;
-	//m_fDis = 40.f;
+	m_fSpeed = 30.f;
+	m_fDis = 50.f;
 
 	m_fCenterSpeed = 5.f;
 }
@@ -38,31 +38,22 @@ int CScrewBullet::Update()
 		m_bStart = false;
 	}
 
-	m_tCenterPos.x -= (LONG)(cosf(m_fCenterAngle * PI / 10.f) * m_fCenterSpeed);
-	m_tCenterPos.y += (LONG)(sinf(m_fCenterAngle * PI / 10.f) * m_fCenterSpeed);
+	m_tCenterPos.x += (LONG)(cosf(m_fCenterAngle * PI / 180.f) * m_fCenterSpeed);
+	m_tCenterPos.y -= (LONG)(sinf(m_fCenterAngle * PI / 180.f) * m_fCenterSpeed);
 
-	m_tInfo.fX = m_tCenterPos.x + cosf(m_fAngle * PI / 100.f) * m_fDis;
+	m_tInfo.fX = m_tCenterPos.x + cosf(m_fAngle * PI / 180.f) * m_fDis;
 	m_tInfo.fY = m_tCenterPos.y - sinf(m_fAngle * PI / 180.f) * m_fDis;
-
-	m_tInfo.iCX += (LONG)(cosf(m_fMisale * PI / 10.f) * m_fCenterSpeed);
-	m_tInfo.iCY -= (LONG)(cosf(m_fMisale * PI / 10.f) * m_fCenterSpeed);
-
 
 	m_fAngle += m_fSpeed;
 
 	Update_Rect();
-
 	return OBJ_NOEVENT;
 }
 
 void CScrewBullet::Late_Update()
 {
-	if (50 >= m_tRect.left || 50 >= m_tRect.top
+	if (100 >= m_tRect.left || 100 >= m_tRect.top
 		|| WINCX - 100 <= m_tRect.right || WINCY - 100 <= m_tRect.bottom)
-		m_bDead = true;
-
-	if (10 >= m_tRect.right || 50 >= m_tRect.top
-		|| WINCX - 100 <= m_tRect.left || WINCY + 100 <= m_tRect.bottom)
 		m_bDead = true;
 }
 

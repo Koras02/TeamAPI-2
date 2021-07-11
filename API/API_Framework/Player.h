@@ -4,15 +4,14 @@
 #define __PLAYER_H__
 
 #include "Obj.h"
-class CPlayerIDLE;
-class CPlayer:public CObj
+class CPlayer : public CObj
 {
 public:
-    CPlayer();
-    virtual ~CPlayer();
+	CPlayer();
+	virtual ~CPlayer();
 
 public:
-	virtual void Initialize() override;
+	virtual void Initalize() override;
 	virtual int Update() override;
 	virtual void Late_Update() override;
 	virtual void Render(HDC _DC) override;
@@ -20,38 +19,27 @@ public:
 
 private:
 	void Key_Check();
- 
-	
-private:
-
-	POINT m_tPosin;
-	float m_fPosinDis;
-
-	POINT m_tMisale;
-	float m_fMisaleDis;
-
-	POINT m_tPlayerIDLE;
-	float m_fPlayerIDLEDIS;
-     
-	POINT m_tScrew;
-	float m_fScrewDis;
- 
+	void Jumping();
 
 private:
-	int Leg1;
-	int Leg2;
-	
-	RECT rec[10];
-	RECT _rec;
- 
+	template <typename T>
+	CObj* Create_Bullet()
+	{
+		return CAbstractFactory<T>::Create((float)m_tPosin.x, (float)m_tPosin.y, m_fAngle);
+	}
 
-	CPlayerIDLE*  m_pPlayerIDLE;
+	CObj* Create_Shield();
 
+private:
+	POINT		m_tPosin;
+	float		m_fPosinDis;
 
+	bool		m_bJump;
+	float		m_fJumpPower;
+	float		m_fJumpTime;
+	float		m_fJumpY;
 };
 
 
 #endif // !__PLAYER_H__
-
-
 
