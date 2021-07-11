@@ -10,6 +10,7 @@
 #include "Bullet.h"
 #include "KeyMgr.h"
 #include "Boss.h"
+#include "Monster.h"
 #include "BossBullet.h"
 CMainGame::CMainGame()
 	: m_iFPS(0),

@@ -27,7 +27,6 @@ void CMonster::Initialize()
 	m_fSpeed = 1.f;
 	m_fAngleSpeed = dis(gen);
 
-	m_pTarget = CObjMgr::Get_Instance()->Get_Player();
 	m_fOriginfX = m_pTarget->Get_Info().fX ;
 	m_fOriginfY = m_pTarget->Get_Info().fY ;
 

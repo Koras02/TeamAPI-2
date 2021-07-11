@@ -42,6 +42,8 @@ protected:
 	bool m_bDead;
 
 	CObj* m_pTarget;
+protected:
+	HBRUSH m_pBrush = nullptr;
 };
 
 

@@ -19,6 +19,7 @@ public:
 
 public:
 	CObj* Get_Player() { return m_listObj[OBJID::PLAYER].front(); }
+	CObj* Get_Boss() { return m_listObj[OBJID::BOSS].front(); }
 	CObj* Get_Target(CObj* _pObj, OBJID::ID _eID);
 	size_t Get_MonsterSize() { return m_listObj[OBJID::MONSTER].size(); }
 public:

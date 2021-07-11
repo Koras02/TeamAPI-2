@@ -3,6 +3,7 @@
 
 BossBullet1::BossBullet1()
 {
+
 }
 
 BossBullet1::~BossBullet1()
@@ -12,6 +13,7 @@ BossBullet1::~BossBullet1()
 
 void BossBullet1::Initialize()
 {
+	m_pBrush = (HBRUSH)CreateSolidBrush(RGB(255, 0, 0));
 	m_tInfo.iCX = 30;
 	m_tInfo.iCY = 60;
 
@@ -37,9 +39,13 @@ void BossBullet1::Late_Update()
 
 void BossBullet1::Render(HDC _DC)
 {
+
+	HBRUSH oldBrush = (HBRUSH)SelectObject(_DC, m_pBrush);
 	Rectangle(_DC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+	SelectObject(_DC, oldBrush);
 }
 
 void BossBullet1::Release()
 {
+	DeleteObject(m_pBrush);
 }

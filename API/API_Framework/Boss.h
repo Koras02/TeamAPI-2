@@ -1,5 +1,6 @@
 #pragma once
 #include "Obj.h"
+#include "ObjMgr.h"
 class CBoss : public CObj
 {
 public:
@@ -23,6 +24,7 @@ private:
 	DWORD _dwTime2;
 	DWORD _dwTime3;
 	DWORD _dwTime4;
+	DWORD _dwTime5;
 	RECT rec[10];
 	RECT Collision_Rec;
 private:
@@ -30,6 +32,11 @@ private:
 	CObj* Create_Bullet(float x, float y)
 	{
 		return CAbstractFactory<T>::Create(x, y);
+	}
+	template <typename T>
+	CObj* Create_Bullet()
+	{
+		return CAbstractFactory<T>::Create((float)m_tInfo.fX,m_tInfo.fY, 0.f);
 	}
 };
 

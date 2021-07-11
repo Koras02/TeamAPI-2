@@ -37,7 +37,7 @@ void CObjMgr::Update()
 		}
 	}
 
-	//CCollisionMgr::Collision_Rect(m_listObj[OBJID::BULLET], m_listObj[OBJID::MONSTER]);
+	CCollisionMgr::Collision_Rect(m_listObj[OBJID::MISALE], m_listObj[OBJID::BOSS]);
 	//CCollisionMgr::Collision_Rect(m_listObj[OBJID::PLAYER], m_listObj[OBJID::MONSTER]);
 	//CCollisionMgr::Collision_Rect(m_listObj[OBJID::PLAYER], m_listObj[OBJID::MISALE]);
 
